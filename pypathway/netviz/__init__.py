@@ -189,11 +189,11 @@ class FromNetworkX(Plotable):
             'menu': self.menu if self.menu else None
         }
         layout = None
-        if len(self.nx.node) > 20:
+        if len(self.nx.nodes) > 20:
             # use the layout provided by
-            layout = nx.spring_layout(self.nx, iterations=1000, k=1 / math.sqrt(len(self.nx.node)))
+            layout = nx.spring_layout(self.nx, iterations=1000, k=1 / math.sqrt(len(self.nx.nodes)))
             config['options']['layout'] = {'name': 'preset'}
-        for k, v in self.nx.node.items():
+        for k, v in self.nx.nodes.items():
             label = k if self.label == 'node_name' else v[self.label]
             style = v.get('snapshot') if self.snapshot else v.get('style') or self.node_styles or default_node
             config['options']['elements'].append(
